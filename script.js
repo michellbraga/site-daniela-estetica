@@ -1,1 +1,216 @@
-(()=>{const d=SITE_DATA,q=s=>document.querySelector(s),all=s=>document.querySelectorAll(s),msg=encodeURIComponent(d.message);all('[data-wa]').forEach(a=>a.href=d.whatsapp+'?text='+msg);all('[data-ig]').forEach(a=>{a.href=d.instagram;a.target='_blank';a.rel='noopener noreferrer'});all('[data-google]').forEach(a=>{a.href=d.reviewsUrl;a.target='_blank';a.rel='noopener noreferrer'});all('[data-phone]').forEach(a=>{a.href='tel:+'+d.phone;a.textContent=d.phoneDisplay});all('[data-address]').forEach(e=>e.textContent=d.address);const maps='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(d.address);all('[data-route]').forEach(a=>{a.href=maps;a.target='_blank';a.rel='noopener noreferrer'});q('[data-map]').src='https://www.google.com/maps?q='+encodeURIComponent(d.address)+'&output=embed';q('#year').textContent=new Date().getFullYear();q('#schema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'BeautySalon',name:d.name,telephone:'+55 92 99188-5134',address:{'@type':'PostalAddress',streetAddress:'Rua Rio Carboris, 41',addressLocality:'Manaus',addressRegion:'AM',postalCode:'69098-272',addressCountry:'BR'},sameAs:[d.instagram]});d.services.forEach((s,i)=>{let e=document.createElement('article');e.className='service-card reveal';e.style.setProperty('--card-index',i);e.innerHTML='<div class="service-art" data-symbol=""></div><h3></h3><p></p><a class="under">Saiba mais ↗</a>';const art=e.querySelector('.service-art');art.dataset.symbol=s[3];if(s[4]){art.classList.add('has-image');art.setAttribute('role','button');art.setAttribute('tabindex','0');art.setAttribute('aria-label',s[0]+' — ampliar imagem ilustrativa');const img=document.createElement('img');img.src=s[4];img.alt=s[0]+' — imagem ilustrativa';const square=s[4].includes("Sobrancelhas.png")&&!s[4].includes("Design");img.width=square?1254:1122;img.height=square?1254:1402;art.style.aspectRatio=img.width+'/'+img.height;img.loading='lazy';img.decoding='async';art.append(img);const tag=document.createElement('small');tag.className='image-caption';tag.textContent='Imagem ilustrativa';art.append(tag)}e.querySelector('h3').textContent=s[0];e.querySelector('p').textContent=s[2];e.querySelector('a').href=d.whatsapp+'?text='+encodeURIComponent('Olá, Daniela! Gostaria de saber mais sobre '+s[0]+'.');q('#services').append(e)});const cats=['Todos',...new Set(d.portfolio.map(x=>x[1]))];cats.forEach((cat,i)=>{let b=document.createElement('button');b.className='filter';b.textContent=cat;b.setAttribute('aria-pressed',i?'false':'true');b.onclick=()=>{all('.filter').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');all('.portfolio-card').forEach(c=>c.hidden=cat!=='Todos'&&c.dataset.cat!==cat)};q('#filters').append(b)});d.portfolio.forEach((x,i)=>{let e=document.createElement('article');e.className='portfolio-card reveal';e.style.setProperty('--card-index',i);e.dataset.cat=x[1];e.innerHTML='<div class="portfolio-art" role="img" aria-label="Espaço reservado para foto real autorizada"></div><div class="portfolio-overlay"><small>IMAGEM AUTORIZADA A ADICIONAR</small><b></b><span>Adicionar foto real do portfólio</span></div>';e.querySelector('b').textContent=x[0];if(x[2]){e.querySelector('.portfolio-art').outerHTML='<img class="portfolio-image" src="" alt="" loading="lazy">';const im=e.querySelector('img');im.src=x[2];im.alt=x[0]+' — trabalho de Daniela Moraes';e.querySelector('.portfolio-overlay small').textContent='TRABALHO REAL AUTORIZADO';e.querySelector('.portfolio-overlay span').textContent='Clique para ampliar';e.classList.add('has-photo')}q('#portfolio').append(e)});d.reviews.forEach((r,i)=>{let e=document.createElement('article');e.className='review-card reveal';e.style.setProperty('--card-index',i);e.innerHTML='<div class="avatar"></div><div><small>Avaliação no Google</small><h3></h3><p></p></div>';e.querySelector('.avatar').textContent=r[0].split(' ').map(x=>x[0]).slice(0,2).join('');e.querySelector('h3').textContent=r[0];e.querySelector('p').textContent=r[1];q('#reviews').append(e)});const header=q('#header'),nav=q('#nav'),menu=q('.menu');window.addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>24),{passive:true});menu.onclick=()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',open);menu.textContent=open?'×':'☰';menu.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');nav.classList.toggle('open',open);header.classList.toggle('open',open)};all('#nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');header.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menu');menu.textContent='☰'}));const lightbox=document.createElement('dialog');lightbox.className='lightbox';lightbox.innerHTML='<button class="lb-close" aria-label="Fechar imagem">×</button><button class="lb-prev" aria-label="Imagem anterior">‹</button><img alt=""><button class="lb-next" aria-label="Próxima imagem">›</button><p></p>';document.body.append(lightbox);let photoIndex=0;const photos=()=>[...document.querySelectorAll('.service-art.has-image img, .portfolio-card.has-photo:not([hidden]) img')];const titleFor=im=>im.closest('.service-card')?.querySelector('h3')?.textContent||im.closest('.portfolio-card')?.querySelector('b')?.textContent||im.alt;const showPhoto=i=>{const list=photos();if(!list.length)return;photoIndex=(i+list.length)%list.length;const im=list[photoIndex];lightbox.querySelector('img').src=im.src;lightbox.querySelector('img').alt=im.alt;lightbox.querySelector('p').textContent=titleFor(im);if(!lightbox.open)lightbox.showModal()};const openImage=el=>{const im=el.matches('img')?el:el.querySelector('img');if(im)showPhoto(photos().indexOf(im))};document.querySelector('#services').addEventListener('click',e=>{const item=e.target.closest('.service-art.has-image');if(item)openImage(item)});document.querySelector('#services').addEventListener('keydown',e=>{const item=e.target.closest('.service-art.has-image');if(item&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openImage(item)}});q('#portfolio').addEventListener('click',e=>{const card=e.target.closest('.portfolio-card.has-photo');if(card)openImage(card)});lightbox.querySelector('.lb-close').onclick=()=>lightbox.close();lightbox.querySelector('.lb-prev').onclick=()=>showPhoto(photoIndex-1);lightbox.querySelector('.lb-next').onclick=()=>showPhoto(photoIndex+1);lightbox.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')showPhoto(photoIndex-1);if(e.key==='ArrowRight')showPhoto(photoIndex+1)});lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.close()});let touchStartX=0;lightbox.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].clientX},{passive:true});lightbox.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchStartX;if(Math.abs(dx)>45)showPhoto(photoIndex+(dx<0?1:-1))},{passive:true});const reduced=matchMedia('(prefers-reduced-motion: reduce)'),deferredVideo=q('.deferred-video');if(deferredVideo&&!reduced.matches&&'IntersectionObserver'in window){const videoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{const video=entry.target;if(entry.isIntersecting){const source=video.querySelector('source');if(!source.src){source.src=source.dataset.src;video.load()}video.play().catch(()=>{});}else video.pause()}),{rootMargin:'120px'});videoObserver.observe(deferredVideo)}document.documentElement.classList.add('js');if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12});all('.reveal').forEach(e=>io.observe(e))}else all('.reveal').forEach(e=>e.classList.add('is-visible'));})();
+(() => {
+  const d = SITE_DATA;
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const message = encodeURIComponent(d.message);
+
+  $$('[data-wa]').forEach(link => { link.href = `${d.whatsapp}?text=${message}`; });
+  $$('[data-ig]').forEach(link => { link.href = d.instagram; link.target = '_blank'; link.rel = 'noopener noreferrer'; });
+  $$('[data-google]').forEach(link => { link.href = d.reviewsUrl; link.target = '_blank'; link.rel = 'noopener noreferrer'; });
+  $$('[data-phone]').forEach(link => { link.href = `tel:+${d.phone}`; link.textContent = d.phoneDisplay; });
+  $$('[data-address]').forEach(el => { el.textContent = d.address; });
+
+  const maps = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(d.address)}`;
+  $$('[data-route]').forEach(link => { link.href = maps; link.target = '_blank'; link.rel = 'noopener noreferrer'; });
+  const map = $('[data-map]');
+  map.src = `https://www.google.com/maps?q=${encodeURIComponent(d.address)}&output=embed`;
+  $('#year').textContent = new Date().getFullYear();
+
+  $('#schema').textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BeautySalon',
+    name: d.name,
+    telephone: `+${d.phone}`,
+    address: {
+      '@type': 'PostalAddress', streetAddress: 'Rua Rio Carboris, 41',
+      addressLocality: 'Manaus', addressRegion: 'AM', postalCode: '69098-272', addressCountry: 'BR'
+    },
+    areaServed: { '@type': 'City', name: 'Manaus' },
+    sameAs: [d.instagram]
+  });
+
+  d.services.forEach(([name, category, description], index) => {
+    const card = document.createElement('article');
+    card.className = 'service-card reveal';
+    card.style.setProperty('--card-index', index % 5);
+    const title = document.createElement('h3');
+    title.textContent = name;
+    const group = document.createElement('small');
+    group.className = 'service-category';
+    group.textContent = category;
+    const detail = document.createElement('p');
+    detail.textContent = description;
+    const link = document.createElement('a');
+    link.className = 'under';
+    link.href = `${d.whatsapp}?text=${encodeURIComponent(`Olá, Daniela! Gostaria de saber mais sobre ${name}.`)}`;
+    link.textContent = 'Consultar serviço ↗';
+    card.append(group, title, detail, link);
+    $('#services').append(card);
+  });
+
+  const categories = ['Todos', 'Lábios', 'Sobrancelhas', 'Capilar', 'Studio'];
+  let activeCategory = 'Todos';
+  categories.forEach((category, index) => {
+    const button = document.createElement('button');
+    button.className = 'filter';
+    button.type = 'button';
+    button.textContent = category;
+    button.setAttribute('aria-pressed', String(index === 0));
+    button.addEventListener('click', () => {
+      activeCategory = category;
+      $$('.filter').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      $$('.portfolio-card').forEach(card => {
+        card.hidden = category !== 'Todos' && card.dataset.cat !== category;
+      });
+      const empty = $('#portfolio-empty');
+      empty.hidden = category !== 'Studio';
+    });
+    $('#filters').append(button);
+  });
+
+  d.portfolio.forEach(([name, category, src, width, height], index) => {
+    const figure = document.createElement('figure');
+    figure.className = 'portfolio-card reveal';
+    figure.dataset.cat = category;
+    figure.style.setProperty('--card-index', index % 5);
+    const image = document.createElement('img');
+    image.className = 'portfolio-image';
+    image.src = src;
+    image.alt = `${name} — fotografia da categoria ${category}`;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    image.width = width;
+    image.height = height;
+    image.tabIndex = 0;
+    image.setAttribute('role', 'button');
+    image.setAttribute('aria-label', `Ampliar imagem: ${name}`);
+    const caption = document.createElement('figcaption');
+    caption.textContent = name;
+    figure.append(image, caption);
+    $('#portfolio').append(figure);
+  });
+  const empty = document.createElement('p');
+  empty.id = 'portfolio-empty';
+  empty.className = 'portfolio-empty';
+  empty.textContent = 'Nenhuma imagem disponível nesta aba.';
+  empty.hidden = true;
+  $('#portfolio').after(empty);
+
+  const header = $('#header');
+  const nav = $('#nav');
+  const menu = $('.menu');
+  const setMenu = open => {
+    menu.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    menu.textContent = open ? '×' : '☰';
+    nav.classList.toggle('open', open);
+    header.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+  };
+  menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      menu.focus();
+    }
+  });
+  $$('#nav a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 24), { passive: true });
+
+  const lightbox = document.createElement('dialog');
+  lightbox.className = 'lightbox';
+  lightbox.setAttribute('aria-label', 'Visualização de imagem do portfólio');
+  lightbox.innerHTML = '<button class="lb-close" type="button" aria-label="Fechar imagem">×</button><button class="lb-prev" type="button" aria-label="Imagem anterior">‹</button><img alt=""><button class="lb-next" type="button" aria-label="Próxima imagem">›</button><p></p>';
+  document.body.append(lightbox);
+  let photoIndex = 0;
+  let previousFocus = null;
+  const visiblePhotos = () => $$('.portfolio-card:not([hidden]) .portfolio-image');
+  const showPhoto = index => {
+    const photos = visiblePhotos();
+    if (!photos.length) return;
+    photoIndex = (index + photos.length) % photos.length;
+    const photo = photos[photoIndex];
+    $('img', lightbox).src = photo.src;
+    $('img', lightbox).alt = photo.alt;
+    $('p', lightbox).textContent = photo.closest('figure').querySelector('figcaption').textContent;
+  };
+  const openImage = image => {
+    previousFocus = image;
+    photoIndex = visiblePhotos().indexOf(image);
+    showPhoto(photoIndex);
+    lightbox.showModal();
+  };
+  $('#portfolio').addEventListener('click', event => {
+    const image = event.target.closest('.portfolio-image');
+    if (image) openImage(image);
+  });
+  $('#portfolio').addEventListener('keydown', event => {
+    const image = event.target.closest('.portfolio-image');
+    if (image && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openImage(image); }
+  });
+  $('.lb-close', lightbox).addEventListener('click', () => lightbox.close());
+  $('.lb-prev', lightbox).addEventListener('click', () => showPhoto(photoIndex - 1));
+  $('.lb-next', lightbox).addEventListener('click', () => showPhoto(photoIndex + 1));
+  lightbox.addEventListener('close', () => previousFocus?.focus());
+  lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
+  lightbox.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') showPhoto(photoIndex - 1);
+    if (event.key === 'ArrowRight') showPhoto(photoIndex + 1);
+  });
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+  lightbox.addEventListener('touchend', event => {
+    const delta = event.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(delta) > 45) showPhoto(photoIndex + (delta < 0 ? 1 : -1));
+  }, { passive: true });
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const video = $('.deferred-video');
+  if (video && !reducedMotion.matches && 'IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      const current = entry.target;
+      if (entry.isIntersecting) {
+        const source = $('source', current);
+        if (!source.src) { source.src = source.dataset.src; current.load(); }
+        current.play().catch(() => {});
+      } else current.pause();
+    }), { rootMargin: '120px' });
+    videoObserver.observe(video);
+  }
+
+  const floatButton = $('.wa-float');
+  const floatZones = new Map([['hero', $('#inicio')], ['final', $('.final')], ['footer', $('footer')]]);
+  const hiddenFloatZones = new Set();
+  floatButton.classList.add('is-hidden');
+  if ('IntersectionObserver' in window) {
+    const floatObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const key = [...floatZones].find(([, element]) => element === entry.target)?.[0];
+        if (entry.isIntersecting) hiddenFloatZones.add(key);
+        else hiddenFloatZones.delete(key);
+      });
+      floatButton.classList.toggle('is-hidden', hiddenFloatZones.size > 0);
+    });
+    floatZones.forEach(element => floatObserver.observe(element));
+  } else {
+    const updateFloat = () => {
+      const heroDone = $('#inicio').getBoundingClientRect().bottom <= 0;
+      const finalVisible = $('.final').getBoundingClientRect().top < innerHeight;
+      const footerVisible = $('footer').getBoundingClientRect().top < innerHeight;
+      floatButton.classList.toggle('is-hidden', !heroDone || finalVisible || footerVisible);
+    };
+    window.addEventListener('scroll', updateFloat, { passive: true });
+    updateFloat();
+  }
+
+  document.documentElement.classList.add('js');
+  if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    }), { threshold: 0.12 });
+    $$('.reveal').forEach(element => revealObserver.observe(element));
+  } else $$('.reveal').forEach(element => element.classList.add('is-visible'));
+})();

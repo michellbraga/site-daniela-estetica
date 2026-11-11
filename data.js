@@ -1,1 +1,38 @@
-window.SITE_DATA={name:'Daniela Moraes Micropigmentação & Estética',address:'Rua Rio Carboris, 41 - Cidade Nova, Manaus - AM, CEP 69098-272',phoneDisplay:'(92) 99188-5134',phone:'5592991885134',whatsapp:'https://wa.me/message/B5SPVU6TZVTKI1',instagram:'https://www.instagram.com/danimoraespmu/',reviewsUrl:'https://www.google.com/search?q=Daniela+Moraes+Micropigmenta%C3%A7%C3%A3o+Manaus+avalia%C3%A7%C3%B5es',message:'Olá, Daniela! Conheci seu trabalho pelo site e gostaria de saber mais sobre os procedimentos e horários disponíveis.',services:[['Micropigmentação Labial','Lábios','Converse com Daniela para conhecer a proposta, os cuidados e a indicação para você.','✳','assets/imagens/Micropigmentação%20labial.png'],['Micropigmentação de Sobrancelhas','Sobrancelhas','Atendimento individualizado, considerando suas características e sua identidade.','◒','assets/imagens/Sobrancelhas.png'],['Design e Cuidados com Sobrancelhas','Sobrancelhas','Consulte os detalhes do serviço e a disponibilidade diretamente pelo WhatsApp.','⌁','assets/imagens/Design%20de%20Sobrancelhas%20no%20Spa.png'],['Serviços Capilares','Capilar','Fale com a profissional para confirmar quais serviços estão disponíveis.','〰','assets/imagens/Transformações%20capilares.png'],['Tratamentos e Transformações Capilares','Capilar','Cada proposta e indicação é conversada de forma individual.','✧','assets/imagens/Transformações%20capilares.png']],portfolio:[['Micropigmentação labial','Lábios'],['Sobrancelhas','Sobrancelhas'],['Detalhes do estúdio','Estúdio'],['Transformações capilares','Capilar']],reviews:[['Tatiana Mota','Destaca a experiência profissional e a qualidade dos produtos.'],['Vanessa Rebouças','Elogia o espaço e a qualidade do serviço.'],['Barbara Bentes','Destaca a profissional e a experiência em Manaus.']]};
+window.SITE_DATA = {
+  name: 'Daniela Moraes Micropigmentação & Estética',
+  address: 'Rua Rio Carboris, 41 - Cidade Nova, Manaus - AM, CEP 69098-272',
+  phoneDisplay: '(92) 99188-5134',
+  phone: '5592991885134',
+  whatsapp: 'https://wa.me/message/B5SPVU6TZVTKI1',
+  instagram: 'https://www.instagram.com/danimoraespmu/',
+  reviewsUrl: 'https://www.google.com/search?q=Daniela+Moraes+Micropigmenta%C3%A7%C3%A3o+Manaus+avalia%C3%A7%C3%B5es',
+  message: 'Olá, Daniela! Conheci seu trabalho pelo site e gostaria de saber mais sobre os procedimentos e horários disponíveis.',
+  services: [
+    ['Alisamentos', 'Capilar', 'Serviços de alisamento capilar.'],
+    ['Coloração', 'Capilar', 'Coloração dos cabelos.'],
+    ['Retoque de raiz', 'Capilar', 'Manutenção da cor na raiz dos cabelos.'],
+    ['Mechas na touca', 'Capilar', 'Mechas feitas com técnica de touca.'],
+    ['Cortes femininos', 'Capilar', 'Cortes de cabelo exclusivamente femininos.'],
+    ['Cronograma capilar', 'Capilar', 'Cuidados capilares organizados em cronograma.'],
+    ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'Micropigmentação de sobrancelhas.'],
+    ['Micropigmentação labial', 'Lábios', 'Micropigmentação dos lábios.']
+  ],
+  portfolio: [
+    ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial.jpeg', 720, 1280],
+    ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial1.jpeg', 1200, 1600],
+    ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial2.jpeg', 1200, 1600],
+    ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial3.jpeg', 720, 1280],
+    ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial4.jpeg', 720, 920],
+    ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial5.jpeg', 720, 1283],
+    ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'assets/imagens/Sobrancelhas1.jpeg', 1200, 1600],
+    ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'assets/imagens/Sobrancelhas2.jpeg', 720, 1600],
+    ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'assets/imagens/Sobrancelhas3.jpeg', 720, 1162],
+    ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'assets/imagens/Sobrancelhas4.jpeg', 720, 700],
+    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares1.jpeg', 720, 948],
+    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares2.jpeg', 720, 707],
+    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares3.jpeg', 720, 1280],
+    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares4.jpeg', 1170, 1170],
+    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares5.jpeg', 720, 1280],
+    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares6.jpeg', 1170, 1122]
+  ]
+};
