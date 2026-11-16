@@ -24,6 +24,7 @@ window.SITE_DATA = {
     ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial3.jpeg', 720, 1280],
     ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial4.jpeg', 720, 920],
     ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial5.jpeg', 720, 1283],
+    ['Micropigmentação softshadow', 'Sobrancelhas', 'assets/imagens/Micropigmenta%C3%A7%C3%A3o%20softshadow.jpeg', 720, 1280],
     ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'assets/imagens/Sobrancelhas1.jpeg', 1200, 1600],
     ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'assets/imagens/Sobrancelhas2.jpeg', 720, 1600],
     ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'assets/imagens/Sobrancelhas3.jpeg', 720, 1162],
@@ -33,6 +34,11 @@ window.SITE_DATA = {
     ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares3.jpeg', 720, 1280],
     ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares4.jpeg', 1170, 1170],
     ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares5.jpeg', 720, 1280],
-    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares6.jpeg', 1170, 1122]
+    ['Transformações capilares', 'Capilar', 'assets/imagens/Transformações%20capilares6.jpeg', 1170, 1122],
+    ['Studio', 'Studio', 'assets/imagens/studio1.jpeg', 960, 1280],
+    ['Studio', 'Studio', 'assets/imagens/studio2.jpeg', 960, 1280],
+    ['Studio', 'Studio', 'assets/imagens/studio3.jpeg', 1280, 960],
+    ['Studio', 'Studio', 'assets/imagens/studio4.jpeg', 1280, 960],
+    ['Studio', 'Studio', 'assets/imagens/studio5.jpeg', 960, 1280]
   ]
 };

@@ -63,7 +63,7 @@
         card.hidden = category !== 'Todos' && card.dataset.cat !== category;
       });
       const empty = $('#portfolio-empty');
-      empty.hidden = category !== 'Studio';
+      empty.hidden = category !== 'Studio' || d.portfolio.some(([, itemCategory]) => itemCategory === 'Studio');
     });
     $('#filters').append(button);
   });
