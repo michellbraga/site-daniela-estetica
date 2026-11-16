@@ -18,7 +18,7 @@ window.SITE_DATA = {
     ['Micropigmentação labial', 'Lábios', 'Micropigmentação dos lábios.']
   ],
   portfolio: [
-    ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial.jpeg', 720, 1280],
+    ['Preenchimento labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial.jpeg', 720, 1280],
     ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial1.jpeg', 1200, 1600],
     ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial2.jpeg', 1200, 1600],
     ['Micropigmentação labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial3.jpeg', 720, 1280],
