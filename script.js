@@ -2,9 +2,11 @@
   const d = SITE_DATA;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const message = encodeURIComponent(d.message);
-
-  $$('[data-wa]').forEach(link => { link.href = `${d.whatsapp}?text=${message}`; });
+  $$('[data-wa]').forEach(link => {
+    link.href = `${d.whatsapp}?text=${encodeURIComponent(link.dataset.waMessage)}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+  });
   $$('[data-ig]').forEach(link => { link.href = d.instagram; link.target = '_blank'; link.rel = 'noopener noreferrer'; });
   $$('[data-google]').forEach(link => { link.href = d.reviewsUrl; link.target = '_blank'; link.rel = 'noopener noreferrer'; });
   $$('[data-phone]').forEach(link => { link.href = `tel:+${d.phone}`; link.textContent = d.phoneDisplay; });
@@ -29,12 +31,21 @@
     sameAs: [d.instagram]
   });
 
-  d.services.forEach(([name, category, description], index) => {
+  d.services.forEach(([name, category, description, options], index) => {
     const card = document.createElement('article');
     card.className = 'service-card reveal';
     card.style.setProperty('--card-index', index % 5);
     const title = document.createElement('h3');
     title.textContent = name;
+    const serviceList = Array.isArray(options) ? document.createElement('ul') : title;
+    if (Array.isArray(options)) {
+      serviceList.className = 'service-options';
+      options.forEach(service => {
+        const item = document.createElement('li');
+        item.textContent = service;
+        serviceList.append(item);
+      });
+    }
     const group = document.createElement('small');
     group.className = 'service-category';
     group.textContent = category;
@@ -42,9 +53,14 @@
     detail.textContent = description;
     const link = document.createElement('a');
     link.className = 'under';
-    link.href = `${d.whatsapp}?text=${encodeURIComponent(`Olá, Daniela! Gostaria de saber mais sobre ${name}.`)}`;
+    const serviceMessage = Array.isArray(options)
+      ? `Olá, Daniela! Tenho interesse nos serviços de ${options.join(' e ')}. Poderia me informar os detalhes, valores e horários disponíveis?`
+      : `Olá, Daniela! Tenho interesse no serviço de ${name}. Poderia me informar os detalhes, valores e horários disponíveis?`;
+    link.href = `${d.whatsapp}?text=${encodeURIComponent(serviceMessage)}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
     link.textContent = 'Consultar serviço ↗';
-    card.append(group, title, detail, link);
+    card.append(group, serviceList, detail, link);
     $('#services').append(card);
   });
 

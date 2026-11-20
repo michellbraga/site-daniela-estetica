@@ -3,10 +3,9 @@ window.SITE_DATA = {
   address: 'Rua Rio Carboris, 41 - Cidade Nova, Manaus - AM, CEP 69098-272',
   phoneDisplay: '(92) 99188-5134',
   phone: '5592991885134',
-  whatsapp: 'https://wa.me/message/B5SPVU6TZVTKI1',
+  whatsapp: 'https://wa.me/5592991885134',
   instagram: 'https://www.instagram.com/danimoraespmu/',
   reviewsUrl: 'https://www.google.com/search?q=Daniela+Moraes+Micropigmenta%C3%A7%C3%A3o+Manaus+avalia%C3%A7%C3%B5es',
-  message: 'Olá, Daniela! Conheci seu trabalho pelo site e gostaria de saber mais sobre os procedimentos e horários disponíveis.',
   services: [
     ['Alisamentos', 'Capilar', 'Serviços de alisamento capilar.'],
     ['Coloração', 'Capilar', 'Coloração dos cabelos.'],
@@ -15,7 +14,7 @@ window.SITE_DATA = {
     ['Cortes femininos', 'Capilar', 'Cortes de cabelo exclusivamente femininos.'],
     ['Cronograma capilar', 'Capilar', 'Cuidados capilares organizados em cronograma.'],
     ['Micropigmentação de sobrancelhas', 'Sobrancelhas', 'Micropigmentação de sobrancelhas.'],
-    ['Micropigmentação labial', 'Lábios', 'Micropigmentação dos lábios.']
+    ['Micropigmentação labial', 'Lábios', 'Micropigmentação dos lábios.', ['Micropigmentação labial', 'Preenchimento Labial']]
   ],
   portfolio: [
     ['Preenchimento labial', 'Lábios', 'assets/imagens/micropigmentacao%20labial.jpeg', 720, 1280],
